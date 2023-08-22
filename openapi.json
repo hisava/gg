@@ -1,0 +1,76 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Bookstore API",
+    "description": "Bookstore API for Coursera Guided Project",
+    "version": "1.0",
+    "contact": {
+      "name": "Emma",
+      "url": "http://bookstore.com",
+      "email": "bookstore@bookstore.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://bookstore.dev.com"
+    },
+    {
+      "url": "http://bookstore.production.com"
+    },
+    {
+      "url": "https://bookstore.perf.com"
+    }
+  ],
+  "paths": {
+    "/bookstore": {
+      "description": "This endpoint will outline the bookstore and enable you to query a book",
+      "get": {
+        "description": "Get operation that will get book details",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "bookInformation",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Game of Thrones"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/book"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "book": {
+        "type": "object",
+        "properties": {
+          "bookID": {
+            "type": "integer",
+            "example": 2
+          },
+          "bookName": {
+            "type": "string",
+            "example": "Game of Thrones"
+          },
+          "authorName": {
+            "type": "string",
+            "example": "Emma Morton"
+          }
+        }
+      }
+    }
+  }
+}
